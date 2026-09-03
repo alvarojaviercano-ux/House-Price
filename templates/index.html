@@ -6,6 +6,19 @@
     <title>HousePrice</title>
 </head>
 <body>
-    
+
+    <h1>House Price Predictor</h1>
+    <p>Enter the area in square meters to estimate the price.</p>
+
+    <form action="/predecir" method="POST">
+        <label for="area">Area (m²):</label>
+        <input type="number" id="area" name="area" step="any" required>
+        <button type="submit">Calculate Price</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>Estimated Price: ${{ "{:,.0f}".format(result) }}</h2>
+    {% endif %}
+
 </body>
 </html>
