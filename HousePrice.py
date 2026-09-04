@@ -5,11 +5,29 @@ import base64
 from sklearn.linear_model import LinearRegression
 #scikit-learn
 
+NumRecords=500
+IndependentVar= "Area"
+DependentVar="Price"
+
+
+
+#generate 500 random data points
+area_list=[]
+price_list=[]
+
+
+for i in range(NumRecords):
+    currentArea = 30 + i * 0.5
+    currentPrice = currentArea * 3500000
+    area_list.append(currentArea)
+    price_list.append(currentPrice) 
 
 data = {
-    "Area": [45, 60, 72, 85, 95, 110, 120, 130, 150, 160, 175, 180, 200, 220, 250],
-    "Price": [150000000, 200000000, 250000000, 300000000, 350000000, 400000000, 450000000, 500000000, 600000000, 650000000, 700000000, 720000000, 800000000, 880000000, 1000000000]
+    "Area": area_list,
+    "Price": price_list
+
 }
+
 
 df=pd.DataFrame(data)
 x=df[["Area"]]
