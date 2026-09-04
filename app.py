@@ -12,11 +12,26 @@ def home():
 @app.route('/predecir', methods=['GET', 'POST'])
 def predecir():
     result = None
+    error = None
+
     if request.method == 'POST':
-        area = float(request.form['area'])
-        result = calculatePrice(area)
-    return render_template('index.html', result=result)
+        try:
+            area = float(request.form['area'])
 
+            if area <= 0:
+                error = "El área debe ser mayor que 0."
 
-if __name__ == '__main__':
-    app.run(debug=True)
+            elif area > 1000:
+                error = "El área ingresada es demasiado grande."
+
+            else:
+                result = calculatePrice(area)
+
+        except ValueError:
+            error = "Ingrese un numero válido."
+
+    return render_template(
+        'index.html',
+        result=result,
+        error=error
+    )
